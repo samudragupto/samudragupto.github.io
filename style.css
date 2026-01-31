@@ -1652,3 +1652,95 @@ nav {
         font-size: 1.25rem;
     }
 }
+/* Availability*/
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(34, 197, 94, 0.1); /* Light green bg */
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #4ade80; /* Green text */
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #4ade80;
+    border-radius: 50%;
+    position: relative;
+}
+
+/* The pulsing animation */
+.status-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+/* Footer */
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.footer-brand h3 {
+    font-size: 1.5rem;
+    color: white;
+}
+.footer-brand span { color: var(--primary); }
+.footer-brand p { color: var(--text-secondary); font-size: 0.9rem; }
+
+.footer-links ul { padding: 0; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
+.footer-links a:hover { color: var(--primary); }
+
+.social-icons { display: flex; gap: 15px; }
+.social-icons a { 
+    width: 35px; height: 35px; 
+    background: rgba(255,255,255,0.1); 
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; color: white;
+    transition: 0.3s;
+}
+.social-icons a:hover { background: var(--primary); }
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .footer-content { grid-template-columns: 1fr; text-align: center; }
+    .footer-bottom { flex-direction: column; gap: 10px; }
+    .social-icons { justify-content: center; }
+}
