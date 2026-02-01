@@ -275,3 +275,242 @@ function animateValue(element, start, end, duration) {
     
     requestAnimationFrame(update);
 }
+// ================================
+// LEETCODE C/C++ SECTION - FIXED
+// ================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Toggle functionality for C/C++ sections
+    const cppExpandBtns = document.querySelectorAll('.cpp-expand-btn');
+    
+    cppExpandBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleCppSection(this);
+        });
+    });
+    
+    // Also toggle when clicking the header
+    const cppHeaders = document.querySelectorAll('.cpp-section-header');
+    
+    cppHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            const btn = this.querySelector('.cpp-expand-btn');
+            toggleCppSection(btn);
+        });
+    });
+    
+    function toggleCppSection(btn) {
+        const targetId = btn.getAttribute('data-target');
+        const content = document.getElementById(targetId);
+        const icon = btn.querySelector('i');
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        
+        if (content) {
+            if (isExpanded) {
+                // Collapse
+                content.classList.add('collapsed');
+                btn.setAttribute('aria-expanded', 'false');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                // Expand
+                content.classList.remove('collapsed');
+                btn.setAttribute('aria-expanded', 'true');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+    }
+    
+    // Animate stats on scroll
+    const cppStatsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCppStats();
+                cppStatsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    const cppStatsHeader = document.querySelector('.cpp-stats-header');
+    if (cppStatsHeader) {
+        cppStatsObserver.observe(cppStatsHeader);
+    }
+    
+    function animateCppStats() {
+        // Animate stat numbers
+        const statNumbers = document.querySelectorAll('.cpp-stat-number[data-count]');
+        statNumbers.forEach(num => {
+            const target = parseInt(num.getAttribute('data-count'));
+            animateNumber(num, target);
+        });
+        
+        // Animate difficulty counts
+        const diffCounts = document.querySelectorAll('.cpp-diff-count[data-count]');
+        diffCounts.forEach(count => {
+            const target = parseInt(count.getAttribute('data-count'));
+            animateNumber(count, target);
+        });
+    }
+    
+    function animateNumber(element, target) {
+        if (target === 0) {
+            element.textContent = '0';
+            return;
+        }
+        
+        const duration = 1500;
+        const startTime = performance.now();
+        const startValue = 0;
+        
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Ease out cubic
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(startValue + (target - startValue) * easeProgress);
+            
+            element.textContent = current;
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = target;
+            }
+        }
+        
+        // Reset to 0 first
+        element.textContent = '0';
+        requestAnimationFrame(update);
+    }
+    
+    // Add hover effect for problem cards
+    const problemCards = document.querySelectorAll('.cpp-problem-card');
+    problemCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+});
+// ================================
+// LIFE JOURNEY — FIXED LIGHTBOX
+// ================================
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    // 1. Scroll Reveal Animation for Journey Items
+    const journeyItems = document.querySelectorAll('.journey-item');
+    
+    const journeyObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 150);
+                journeyObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    journeyItems.forEach(item => {
+        item.classList.add('journey-hidden');
+        journeyObserver.observe(item);
+    });
+
+    // 2. Image Lightbox Effect (Click to Enlarge) — FIXED
+    const galleryImages = document.querySelectorAll('.gallery-grid img');
+    
+    galleryImages.forEach(img => {
+        img.addEventListener('click', function () {
+            openLightbox(this.src);
+        });
+    });
+
+    function openLightbox(src) {
+        // Create lightbox overlay
+        const lightbox = document.createElement('div');
+        lightbox.className = 'journey-lightbox';
+        
+        // Create content
+        const content = document.createElement('div');
+        content.className = 'lightbox-content';
+        
+        // Create image
+        const image = document.createElement('img');
+        image.src = src;
+        
+        // Create close button
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'lightbox-close';
+        closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        
+        // Append elements
+        content.appendChild(image);
+        content.appendChild(closeBtn);
+        lightbox.appendChild(content);
+        document.body.appendChild(lightbox);
+        document.body.style.overflow = 'hidden';
+
+        // Fade in
+        setTimeout(() => lightbox.classList.add('active'), 10);
+
+        // Close on clicking the dark background (not the image)
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Close on clicking X button
+        closeBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            closeLightbox();
+        });
+
+        // Close on Escape key
+        function handleEscape(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        }
+        document.addEventListener('keydown', handleEscape);
+
+        // Close function
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.removeEventListener('keydown', handleEscape);
+            setTimeout(() => {
+                if (lightbox.parentNode) {
+                    lightbox.remove();
+                }
+                document.body.style.overflow = '';
+            }, 300);
+        }
+    }
+
+    // 3. Video Lazy Load
+    const journeyVideos = document.querySelectorAll('.journey-videos video');
+    
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.setAttribute('preload', 'auto');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    journeyVideos.forEach(video => {
+        videoObserver.observe(video);
+    });
+
+});

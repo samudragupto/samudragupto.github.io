@@ -1744,3 +1744,494 @@ nav {
     .footer-bottom { flex-direction: column; gap: 10px; }
     .social-icons { justify-content: center; }
 }
+/* C/C++ LeetCode Section - Matches Python Section Perfectly */
+#leetcode-cpp .lang-tag-cpp {
+    margin-left: auto;
+    background: rgba(243, 75, 125, 0.2);
+    color: #f34b7d;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: 'Fira Code', monospace;
+}
+
+#leetcode-cpp .lc-empty-state {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Reuse all existing .lc-* classes from your original LeetCode section */
+/* ================================
+   LIFE JOURNEY SECTION — COMPLETE
+   ================================ */
+
+/* Section Intro */
+.journey-intro {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto 50px;
+    line-height: 1.8;
+}
+
+/* Timeline Container */
+.journey-timeline {
+    position: relative;
+    padding-left: 50px;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.journey-timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--primary), var(--accent), var(--secondary));
+    border-radius: 3px;
+}
+
+/* Journey Item */
+.journey-item {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.journey-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Journey Marker */
+.journey-marker {
+    position: absolute;
+    left: -50px;
+    top: 30px;
+    width: 44px;
+    height: 44px;
+    background: var(--bg-dark);
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: all 0.4s ease;
+}
+
+.journey-marker i {
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.journey-item:hover .journey-marker {
+    background: var(--primary);
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+.journey-item:hover .journey-marker i {
+    color: white;
+}
+
+/* Journey Card */
+.journey-card {
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.journey-card::before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 35px;
+    width: 0;
+    height: 0;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-right: 14px solid var(--border);
+}
+
+.journey-card::after {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 36px;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-right: 13px solid var(--bg-dark);
+}
+
+.journey-item:hover .journey-card {
+    border-color: var(--primary);
+    transform: translateX(8px);
+    box-shadow: 0 15px 50px rgba(59, 130, 246, 0.15);
+}
+
+/* Card Header */
+.journey-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.journey-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.journey-type.travel {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+}
+
+.journey-type.milestone {
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+}
+
+.journey-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Card Content */
+.journey-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.journey-location {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.journey-location i {
+    color: var(--primary);
+    width: 18px;
+}
+
+.journey-description {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.journey-description strong {
+    color: var(--primary);
+}
+
+/* Photo Gallery */
+.journey-gallery {
+    margin: 25px 0;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    background: var(--bg-card);
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+/* Videos */
+.journey-videos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.journey-videos video {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    background: #000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Tags */
+.journey-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.journey-tags span {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    transition: all 0.3s ease;
+}
+
+.journey-tags span:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Links */
+.journey-links {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+/* ================================
+   LIGHTBOX — FIXED
+   ================================ */
+
+.journey-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.journey-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    cursor: default;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+    object-fit: contain;
+    display: block;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -45px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-close:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: scale(1.1);
+}
+
+/* Mobile Lightbox */
+@media (max-width: 768px) {
+    .lightbox-close {
+        top: -50px;
+        right: 50%;
+        transform: translateX(50%);
+        font-size: 1.2rem;
+        padding: 8px 12px;
+    }
+    
+    .lightbox-close:hover {
+        transform: translateX(50%) scale(1.1);
+    }
+    
+    .lightbox-content img {
+        max-height: 70vh;
+        border-radius: 8px;
+    }
+}
+/* Coming Soon Card */
+.journey-card.coming-soon-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 2px dashed var(--border);
+    text-align: center;
+    padding: 50px 30px;
+}
+
+.journey-card.coming-soon-card:hover {
+    border-color: var(--primary);
+    background: var(--bg-card);
+}
+
+.coming-soon-content i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    opacity: 0.7;
+}
+
+.coming-soon-content h3 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.coming-soon-content p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* ================================
+   RESPONSIVE — LIFE JOURNEY
+   ================================ */
+
+@media (max-width: 768px) {
+    .journey-timeline {
+        padding-left: 35px;
+    }
+    
+    .journey-timeline::before {
+        left: 12px;
+    }
+    
+    .journey-marker {
+        left: -35px;
+        width: 38px;
+        height: 38px;
+    }
+    
+    .journey-marker i {
+        font-size: 0.9rem;
+    }
+    
+    .journey-card::before,
+    .journey-card::after {
+        display: none;
+    }
+    
+    .journey-card {
+        padding: 25px 20px;
+    }
+    
+    .journey-card h3 {
+        font-size: 1.25rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid img {
+        height: 200px;
+    }
+    
+    .journey-videos {
+        grid-template-columns: 1fr;
+    }
+    
+    .journey-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .journey-timeline {
+        padding-left: 25px;
+    }
+    
+    .journey-timeline::before {
+        left: 8px;
+        width: 2px;
+    }
+    
+    .journey-marker {
+        left: -25px;
+        width: 32px;
+        height: 32px;
+    }
+    
+    .journey-marker i {
+        font-size: 0.8rem;
+    }
+    
+    .journey-card {
+        padding: 20px 15px;
+    }
+    
+    .journey-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .journey-description {
+        font-size: 0.95rem;
+    }
+    
+    .gallery-grid img {
+        height: 180px;
+    }
+}
